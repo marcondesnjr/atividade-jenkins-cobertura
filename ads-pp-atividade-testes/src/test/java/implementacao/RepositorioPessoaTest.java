@@ -37,7 +37,7 @@ public class RepositorioPessoaTest {
 
     @Test
     public void testSalvar() {
-        
+        Pessoa pessoa = new Pessoa();
     }
 
     @Test
@@ -68,7 +68,13 @@ public class RepositorioPessoaTest {
     public void testLocalizar() {
         Pessoa p = new RepositorioPessoa().localizar(new Long(3));
         assertNotNull(p);
-        assertEquals(p.getCpf(), "233.431.563-0");
+        assertEquals(p.getCpf().valor(), "233.431.563-02");
+    }
+    
+    @Test
+    public void testLocalizarInexistente() {
+        Pessoa p = new RepositorioPessoa().localizar(new Long(333));
+        assertNull(p);
     }
 
     @Test
