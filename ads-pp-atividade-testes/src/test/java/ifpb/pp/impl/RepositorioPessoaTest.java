@@ -28,12 +28,15 @@ public class RepositorioPessoaTest {
 
     @Before
     public void setUp() {
+        new DBUnitHelper().cleanInsert("/Endereco.xml");
         new DBUnitHelper().cleanInsert("/Pessoa.xml");
     }
 
     @After
     public void tearDown() {
         new DBUnitHelper().deleteAll("/Pessoa.xml");
+        new DBUnitHelper().deleteAll("/Endereco.xml");
+
     }
 
     @Test
@@ -106,9 +109,21 @@ public class RepositorioPessoaTest {
 
     @Test
     public void testLocalizar() {
-        Pessoa p = new RepositorioPessoa().localizar(new Long(3));
+        Pessoa p = new RepositorioPessoa().localizar(new Long(1));
         assertNotNull(p);
-        assertEquals(p.getCpf().valor(), "233.431.563-02");
+        Pessoa real = new Pessoa();
+//        real.setId(1);
+//        real.setNome("nome1");
+//        real.setFoto("12345".getBytes());
+//        real.setEndereco(new Endereco("rua", "bairro"));
+//        real.setCpf(new CPF("180.806.443-73"));
+        assertArrayEquals("12345".getBytes(), p.getFoto());
+        assertEquals(1, p.getId());
+        assertEquals(new CPF("180.806.443-73"), p.getCpf());
+        Endereco end = new Endereco("rua", "bairro");
+        end.setId(1);
+        assertEquals(end, p.getEndereco());
+        assertEquals("nome1", p.getNome());
     }
 
     @Test

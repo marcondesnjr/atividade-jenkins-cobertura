@@ -1,6 +1,7 @@
 package ifpb.pp.pessoa;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -52,5 +53,40 @@ public class Endereco implements Serializable{
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.rua);
+        hash = 17 * hash + Objects.hashCode(this.bairro);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Endereco other = (Endereco) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.rua, other.rua)) {
+            return false;
+        }
+        if (!Objects.equals(this.bairro, other.bairro)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }
