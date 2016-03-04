@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package implementacao;
+package ifpb.pp.impl;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
@@ -19,6 +19,8 @@ public class ValidaCPF implements Validador<CPF>{
     @Override
     public boolean validar(CPF cpf) {
         if(cpf != null){
+            if(cpf.valor() == null)
+                return false;
             CPFValidator validator = new CPFValidator();
             try {
                 validator.assertValid(cpf.valor());

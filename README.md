@@ -4,3 +4,4 @@ Este projeto descreve uma atividade sobre testes de software da disciplina de Pr
 #Atividade
 As descrições sobre a ativide encontra-se [neste] (https://docs.google.com/document/d/1N-hvqYraCOiHY0sx5uaVazua7WCX_TNrTmQnVB-Qo4o) documento.
 
+Equipe: José Marcondes do Nascimento Junior, Fernanda Alves Monteiro
