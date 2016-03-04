@@ -78,6 +78,10 @@
             <version>10.10.1.1</version>
             <!--            <scope>test</scope>-->
         </dependency>
-        
+        <dependency>
+            <groupId>ifpb.dac</groupId>
+            <artifactId>ads-pp-atividade-dbunit</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
