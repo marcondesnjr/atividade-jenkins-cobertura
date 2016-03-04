@@ -8,6 +8,10 @@ package ifpb.pp.pessoa;
 public class CPF {
 
     private String valor;
+
+    public CPF(String valor) {
+        this.valor = valor;
+    }
     
     public String formatado(){
         // Formatar
