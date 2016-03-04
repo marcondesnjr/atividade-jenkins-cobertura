@@ -5,6 +5,8 @@
  */
 package implementacao;
 
+import ifpb.pp.pessoa.CPF;
+import ifpb.pp.pessoa.Endereco;
 import ifpb.pp.pessoa.Pessoa;
 import java.util.List;
 import org.junit.After;
@@ -38,30 +40,34 @@ public class RepositorioPessoaTest {
     @Test
     public void testSalvar() {
         Pessoa pessoa = new Pessoa();
+        pessoa.setId(10);
+        pessoa.setCpf(new CPF("180.806.443-73"));
+        pessoa.setEndereco(new Endereco("Rua1", "Bairro1"));
+        pessoa.setFoto(new byte[10]);
+        
+        RepositorioPessoa repository = new RepositorioPessoa();
+        assertTrue(repository.salvar(pessoa));
+        assertEquals(pessoa, repository.localizar(pessoa.getId()));
     }
 
     @Test
-    public void testRemover_Pessoa() {
-        System.out.println("remover");
-        Pessoa pessoa = null;
-        RepositorioPessoa instance = new RepositorioPessoa();
-        boolean expResult = false;
-        boolean result = instance.remover(pessoa);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testRemoverPessoa() {
+        RepositorioPessoa rep = new RepositorioPessoa();
+        Pessoa p = rep.localizar(new Long(1));
+        assertTrue(rep.remover(p));
+        assertNull(rep.localizar(p.getId()));
     }
 
     @Test
     public void testRemover_Long() {
-        System.out.println("remover");
-        Long key = null;
-        RepositorioPessoa instance = new RepositorioPessoa();
-        boolean expResult = false;
-        boolean result = instance.remover(key);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        System.out.println("remover");
+//        Long key = null;
+//        RepositorioPessoa instance = new RepositorioPessoa();
+//        boolean expResult = false;
+//        boolean result = instance.remover(key);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     @Test
@@ -79,13 +85,9 @@ public class RepositorioPessoaTest {
 
     @Test
     public void testTodos() {
-        System.out.println("todos");
-        RepositorioPessoa instance = new RepositorioPessoa();
-        List<Pessoa> expResult = null;
-        List<Pessoa> result = instance.todos();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        RepositorioPessoa rep = new RepositorioPessoa();
+        List<Pessoa> list = rep.todos();
+        assertEquals(list.size(), 4);
     }
     
 }
