@@ -5,7 +5,9 @@
  */
 package implementacao;
 
+import ifpb.pp.Repositorio;
 import ifpb.pp.Service;
+import ifpb.pp.Validador;
 import ifpb.pp.pessoa.Pessoa;
 import java.util.List;
 
@@ -15,11 +17,12 @@ import java.util.List;
  */
 public class ServicePessoa implements Service<Long, Pessoa>{
     
-    ValidaPessoa validaPessoa = new ValidaPessoa();
-    RepositorioPessoa repositorioPessoa = new RepositorioPessoa();
+    Validador validaPessoa = new ValidaPessoa();
+    Repositorio repositorioPessoa = new RepositorioPessoa();
 
-    public ServicePessoa(RepositorioPessoa repositorioPessoa) {
-        this.repositorioPessoa = repositorioPessoa;
+    public ServicePessoa(Validador validador,Repositorio repositorio) {
+        this.repositorioPessoa = repositorio;
+        this.validaPessoa = validador;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class ServicePessoa implements Service<Long, Pessoa>{
 
     @Override
     public Pessoa localizar(Long key) {
-        return repositorioPessoa.localizar(key);
+        return (Pessoa) repositorioPessoa.localizar(key);
         
     }
 
