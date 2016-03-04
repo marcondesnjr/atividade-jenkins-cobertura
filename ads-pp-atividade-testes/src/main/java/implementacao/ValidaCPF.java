@@ -19,6 +19,8 @@ public class ValidaCPF implements Validador<CPF>{
     @Override
     public boolean validar(CPF cpf) {
         if(cpf != null){
+            if(cpf.valor() == null)
+                return false;
             CPFValidator validator = new CPFValidator();
             try {
                 validator.assertValid(cpf.valor());
