@@ -36,6 +36,7 @@ public class RepositorioPessoaTest {
     public void tearDown() {
         new DBUnitHelper().deleteAll("/Pessoa.xml");
         new DBUnitHelper().deleteAll("/Endereco.xml");
+
     }
 
     @Test
@@ -116,7 +117,7 @@ public class RepositorioPessoaTest {
 //        real.setFoto("12345".getBytes());
 //        real.setEndereco(new Endereco("rua", "bairro"));
 //        real.setCpf(new CPF("180.806.443-73"));
-        assertArrayEquals("12345".getBytes(), real.getFoto());
+        assertArrayEquals("12345".getBytes(), p.getFoto());
         assertEquals(1, p.getId());
         assertEquals(new CPF("180.806.443-73"), p.getCpf());
         Endereco end = new Endereco("rua", "bairro");
