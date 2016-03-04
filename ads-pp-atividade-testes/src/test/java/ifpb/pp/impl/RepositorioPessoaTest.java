@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package implementacao;
+package ifpb.pp.impl;
 
+import ifpb.pp.impl.RepositorioPessoa;
 import ifpb.pp.pessoa.CPF;
 import ifpb.pp.pessoa.Endereco;
 import ifpb.pp.pessoa.Pessoa;
@@ -18,20 +19,18 @@ import static org.junit.Assert.*;
  *
  * @author José Marcondes do Nascimento Junior
  */
-
 import pp.dbunitconf.DBUnitHelper;
 
 public class RepositorioPessoaTest {
-    
+
     public RepositorioPessoaTest() {
     }
-   
-    
+
     @Before
     public void setUp() {
         new DBUnitHelper().cleanInsert("/Pessoa.xml");
     }
-    
+
     @After
     public void tearDown() {
         new DBUnitHelper().deleteAll("/Pessoa.xml");
@@ -44,30 +43,65 @@ public class RepositorioPessoaTest {
         pessoa.setCpf(new CPF("180.806.443-73"));
         pessoa.setEndereco(new Endereco("Rua1", "Bairro1"));
         pessoa.setFoto(new byte[10]);
-        
+
         RepositorioPessoa repository = new RepositorioPessoa();
         assertTrue(repository.salvar(pessoa));
         assertEquals(pessoa, repository.localizar(pessoa.getId()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSalvarNulo() {
+        Pessoa pessoa = null;
+        RepositorioPessoa repository = new RepositorioPessoa();
+        repository.salvar(pessoa);
+    }
+
+    @Test(expected = javax.persistence.RollbackException.class)
+    public void testSalvarInvalidPrimary() {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(1);
+        pessoa.setCpf(new CPF("180.806.443-73"));
+        pessoa.setEndereco(new Endereco("Rua1", "Bairro1"));
+        pessoa.setFoto(new byte[10]);
+
+        RepositorioPessoa repository = new RepositorioPessoa();
+        assertTrue(repository.salvar(pessoa));
+        assertEquals(pessoa, repository.localizar(pessoa.getId()));
+
     }
 
     @Test
     public void testRemoverPessoa() {
         RepositorioPessoa rep = new RepositorioPessoa();
         Pessoa p = rep.localizar(new Long(1));
+        assertNotNull(p);
         assertTrue(rep.remover(p));
         assertNull(rep.localizar(p.getId()));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoverPessoaNula() {
+        RepositorioPessoa rep = new RepositorioPessoa();
+        Pessoa p = rep.localizar(new Long(99));
+        assertNull(p);
+        rep.remover(p);
+    }
+
     @Test
-    public void testRemover_Long() {
-//        System.out.println("remover");
-//        Long key = null;
-//        RepositorioPessoa instance = new RepositorioPessoa();
-//        boolean expResult = false;
-//        boolean result = instance.remover(key);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+    public void testRemoverLong() {
+        Long id = new Long(1);
+        RepositorioPessoa rep = new RepositorioPessoa();
+        assertNotNull(rep.localizar(id));
+        assertTrue(rep.remover(id));
+        assertNull(rep.localizar(id));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoverLongNulo() {
+        Long id = new Long(99);
+        RepositorioPessoa rep = new RepositorioPessoa();
+        assertNull(rep.localizar(id));
+        rep.remover(id);
     }
 
     @Test
@@ -76,7 +110,7 @@ public class RepositorioPessoaTest {
         assertNotNull(p);
         assertEquals(p.getCpf().valor(), "233.431.563-02");
     }
-    
+
     @Test
     public void testLocalizarInexistente() {
         Pessoa p = new RepositorioPessoa().localizar(new Long(333));
@@ -89,5 +123,13 @@ public class RepositorioPessoaTest {
         List<Pessoa> list = rep.todos();
         assertEquals(list.size(), 4);
     }
-    
+
+    @Test
+    public void testTodosVazio() {
+        new DBUnitHelper().deleteAll("/Pessoa.xml");
+        RepositorioPessoa rep = new RepositorioPessoa();
+        List<Pessoa> list = rep.todos();
+        assertEquals(list.size(), 0);
+    }
+
 }

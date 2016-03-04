@@ -2,8 +2,8 @@
 import ifpb.pp.pessoa.CPF;
 import ifpb.pp.pessoa.Endereco;
 import ifpb.pp.pessoa.Pessoa;
-import implementacao.RepositorioPessoa;
-import implementacao.ValidaCPF;
+import ifpb.pp.impl.RepositorioPessoa;
+import ifpb.pp.impl.ValidaCPF;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
