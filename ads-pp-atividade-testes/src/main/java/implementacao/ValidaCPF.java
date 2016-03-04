@@ -23,11 +23,11 @@ public class ValidaCPF implements Validador<CPF>{
             try {
                 validator.assertValid(cpf.valor());
                 System.out.println("Valido");
-                
+                return true;
             } catch (InvalidStateException e) {
                 System.err.println(e.getInvalidMessages());
             }
-            return true;
+            
             }
         return false;
     } 

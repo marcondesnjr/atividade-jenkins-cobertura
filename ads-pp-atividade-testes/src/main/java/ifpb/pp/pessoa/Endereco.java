@@ -7,7 +7,7 @@ import javax.persistence.Entity;
  * @mail ricardo.job@ifpb.edu.br
  * @since 03/03/2016, 15:57:59
  */
-//@Entity
+@Entity
 public class Endereco {
 
     private int id;
