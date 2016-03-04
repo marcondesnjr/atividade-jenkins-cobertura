@@ -1,9 +1,11 @@
 package ifpb.pp.pessoa;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.Id;
@@ -14,6 +16,7 @@ import javax.persistence.Id;
  * @since 03/03/2016, 15:25:51
  */
 @Entity
+
 public class Pessoa implements Serializable {
 
    @Id
@@ -21,8 +24,10 @@ public class Pessoa implements Serializable {
     private long id;
     private String nome;
     private byte[] foto;
+    @Embedded
     private CPF cpf; //não entidade
     
+    @OneToOne
     private Endereco endereco;
 
     public Pessoa() {

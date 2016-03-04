@@ -1,6 +1,9 @@
 package ifpb.pp.pessoa;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * @author Ricardo Job
@@ -8,8 +11,10 @@ import javax.persistence.Entity;
  * @since 03/03/2016, 15:57:59
  */
 @Entity
-public class Endereco {
+public class Endereco implements Serializable{
 
+    @Id
+    @GeneratedValue
     private int id;
     private String rua;
     private String bairro;
