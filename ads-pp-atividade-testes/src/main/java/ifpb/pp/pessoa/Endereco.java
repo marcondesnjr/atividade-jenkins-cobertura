@@ -19,6 +19,16 @@ public class Endereco implements Serializable{
     private String rua;
     private String bairro;
 
+    public Endereco() {
+    }
+   
+
+    public Endereco(String rua, String bairro) {
+        this.rua = rua;
+        this.bairro = bairro;
+    }
+   
+
     public int getId() {
         return id;
     }
