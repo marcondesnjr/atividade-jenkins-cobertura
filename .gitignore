@@ -1,3 +1,7 @@
 /target/
 .DS_Store
+<<<<<<< HEAD
+=======
+/ads-pp-atividade-testes/nbproject/
+>>>>>>> criando-testes
 /ads-pp-atividade-testes/target/

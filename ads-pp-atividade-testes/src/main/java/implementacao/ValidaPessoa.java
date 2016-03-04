@@ -6,6 +6,7 @@
 package implementacao;
 
 import ifpb.pp.Validador;
+import ifpb.pp.pessoa.CPF;
 import ifpb.pp.pessoa.Pessoa;
 
 /**
@@ -13,11 +14,12 @@ import ifpb.pp.pessoa.Pessoa;
  * @author NandaPC
  */
 public class ValidaPessoa implements Validador<Pessoa>{
-
+    
+    
     @Override
     public boolean validar(Pessoa pessoa) {
+        ValidaCPF validaCPF = new ValidaCPF();
         if(pessoa != null){
-            ValidaCPF validaCPF = new ValidaCPF();
             if(validaCPF.validar(pessoa.getCpf())){
                 if(pessoa.getFoto() != null && pessoa.getEndereco() != null)
                     return true;
