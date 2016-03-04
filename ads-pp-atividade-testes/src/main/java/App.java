@@ -28,10 +28,9 @@ public class App {
         Pessoa pessoa = new Pessoa();
         pessoa.setNome("fernanda");
         
-        pessoa.setCpf(new CPF("1234556"));
+        pessoa.setCpf(new CPF("233.431.563-02"));
         Endereco endereco = new Endereco("rua", "bairro");
-        pessoa.setEndereco(endereco );
-        pessoa.setFoto(null);
+        pessoa.setEndereco(endereco);
       
         
         repositorioPessoa.salvar(pessoa);
