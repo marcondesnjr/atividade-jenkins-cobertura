@@ -36,6 +36,16 @@ public class Pessoa implements Serializable {
     public Pessoa() {
     }
 
+    public Pessoa(long id, String nome, byte[] foto, CPF cpf, Endereco endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.foto = foto;
+        this.cpf = cpf;
+        this.endereco = endereco;
+    }
+
+    
+    
     public long getId() {
         return id;
     }
