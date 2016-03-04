@@ -10,6 +10,7 @@ import ifpb.pp.pessoa.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -18,7 +19,7 @@ import javax.persistence.Query;
  */
 public class RepositorioPessoa implements Repositorio<Long, Pessoa>{
     
-    private EntityManager entityManager;
+    EntityManager entityManager = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 
     @Override
     public boolean salvar(Pessoa pessoa) {
