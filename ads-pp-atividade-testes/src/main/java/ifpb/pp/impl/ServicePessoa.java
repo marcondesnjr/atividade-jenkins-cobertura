@@ -7,6 +7,7 @@ package ifpb.pp.impl;
 
 import ifpb.pp.Repositorio;
 import ifpb.pp.Service;
+import ifpb.pp.ServiceException;
 import ifpb.pp.Validador;
 import ifpb.pp.pessoa.Pessoa;
 import java.util.List;
@@ -17,8 +18,8 @@ import java.util.List;
  */
 public class ServicePessoa implements Service<Long, Pessoa>{
     
-    Validador validaPessoa = new ValidaPessoa();
-    Repositorio repositorioPessoa = new RepositorioPessoa();
+    private Validador validaPessoa;
+    private Repositorio repositorioPessoa;
 
     public ServicePessoa(Validador validador,Repositorio repositorio) {
         this.repositorioPessoa = repositorio;
@@ -28,10 +29,9 @@ public class ServicePessoa implements Service<Long, Pessoa>{
     @Override
     public boolean salvar(Pessoa pessoa) {
         if(validaPessoa.validar(pessoa)){
-           return repositorioPessoa.salvar(pessoa);
-            
-        }
-        return false;
+           return repositorioPessoa.salvar(pessoa);          
+        }else
+            throw new ServiceException();
     }
 
     @Override
