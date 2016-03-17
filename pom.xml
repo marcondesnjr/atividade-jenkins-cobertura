@@ -14,4 +14,13 @@
         <module>ads-pp-atividade-testes</module>
         <module>ads-pp-atividade-dbunit</module>
     </modules>
+    <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.6</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>
