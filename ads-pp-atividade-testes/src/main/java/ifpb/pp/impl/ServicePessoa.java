@@ -34,6 +34,19 @@ public class ServicePessoa implements Service<Long, Pessoa>{
             throw new ServiceException();
     }
 
+    public boolean salvar2(Pessoa pessoa) {
+        if(validaPessoa.validar(pessoa)){
+           return repositorioPessoa.salvar(pessoa);          
+        }else
+            throw new ServiceException();
+    }
+    public boolean salvar3(Pessoa pessoa) {
+        if(validaPessoa.validar(pessoa)){
+           return repositorioPessoa.salvar(pessoa);          
+        }else
+            throw new ServiceException();
+    }
+    
     @Override
     public boolean remover(Pessoa pessoa) {
         return repositorioPessoa.remover(pessoa);
